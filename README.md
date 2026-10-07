@@ -1,6 +1,8 @@
 # ExpenseTracker
 
-ExpenseTracker è una applicazione desktop Windows per la gestione ordinata delle spese, dei budget e dei movimenti ricorrenti. L’interfaccia è pensata per un uso professionale e per piccoli team.
+Vecchio progetto incompleto ripreso e attualmente in fase di consolidamento: ExpenseTracker è una desktop app Windows per organizzare spese, entrate, budget e movimenti ricorrenti in modo semplice e professionale.
+
+**Coming Soon...**
 
 ## Stack
 
