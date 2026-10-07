@@ -1,0 +1,57 @@
+{
+  "name": "expense-tracker",
+  "private": true,
+  "version": "0.1.0",
+  "main": "electron/main.cjs",
+  "description": "Desktop application for reliable expense management",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "build:desktop": "npm install --prefix server && npm run build --prefix client && npm run build --prefix server && npm prune --omit=dev --prefix server && electron-builder --win dir",
+    "build:installer": "npm install --prefix server && npm run build --prefix client && npm run build --prefix server && npm prune --omit=dev --prefix server && electron-builder --win nsis",
+    "test": "npm run test --prefix server && npm run test --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^38.3.0",
+    "electron-builder": "^26.0.12",
+    "prisma": "^6.16.3"
+  },
+  "build": {
+    "appId": "com.expensetracker.desktop",
+    "productName": "ExpenseTracker",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server/dist",
+        "to": "server/dist"
+      },
+      {
+        "from": "server/node_modules",
+        "to": "server/node_modules"
+      },
+      {
+        "from": "client/dist",
+        "to": "client/dist"
+      },
+      {
+        "from": "prisma",
+        "to": "prisma"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "ExpenseTracker-Setup-${version}.${ext}",
+      "verifyUpdateCodeSignature": false
+    }
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.3"
+  }
+}
