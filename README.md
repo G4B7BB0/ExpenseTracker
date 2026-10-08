@@ -8,7 +8,6 @@ Add your income and expenses, see where your money goes, set a monthly budget, a
 >
 > Built and completed by **G4B7BB0** using a vibe-coding workflow.
 
-![ExpenseTracker logo](client/src/assets/hero.png)
 
 ## What it does
 
@@ -90,18 +89,3 @@ This repository is shared so people can **clone it and use it personally**.
 There is **no permission to republish, redistribute, sell, rebrand, or upload modified copies** of this project or its assets. Please keep the original author information and do not present the project as your own.
 
 See [`LICENSE.md`](LICENSE.md) for the full personal-use notice.
-
-## Project signature
-
-```text
-  _____ _  _   ____  ____  ____  ____  ____  ____
- / ____| || | / __ \|  _ \|  _ \|  _ \|  _ \|  _ \
-| |  __| || || |  | | |_) | |_) | |_) | |_) | |_) |
-| | |_ |__   _| |  | |  _ <|  _ <|  _ <|  _ <|  _ <
-| |__| |  | | | |__| | |_) | |_) | |_) | |_) | |_) |
- \_____|  |_|  \____/|____/|____/|____/|____/|____/
-
-                    - G4B7BB0 -
-```
-
-The application code also keeps the original `G4B7BB0` identity in the project metadata and UI account demo used for the screenshots.
