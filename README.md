@@ -21,6 +21,10 @@ Add your income and expenses, see where your money goes, set a monthly budget, a
 - Supports light mode and dark mode
 - Stores data locally on the Windows computer
 
+## Language
+
+The application interface is currently available in **Italian**. One of the planned improvements for future versions is adding support for more languages.
+
 ## Screenshots
 
 ### Login and account workspace
