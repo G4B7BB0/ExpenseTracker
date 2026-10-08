@@ -1,26 +1,53 @@
 # ExpenseTracker
 
-Vecchio progetto incompleto ripreso e attualmente in fase di consolidamento: ExpenseTracker è una desktop app Windows per organizzare spese, entrate, budget e movimenti ricorrenti in modo semplice e professionale.
+ExpenseTracker is a Windows desktop application for managing personal finances in one place. It combines a focused dashboard with transaction management, budgets, recurring payments, categories, analytics, and CSV data exchange.
 
-**Coming Soon...**
+> **Status: Completed**
+>
+> ExpenseTracker was completed through a vibe-coding workflow and is packaged as a local-first Electron application.
 
-## Stack
+![ExpenseTracker brand mark](client/src/assets/hero.png)
 
-- **Frontend:** React, TypeScript, Vite, Tailwind CSS, Recharts
-- **Backend:** Node.js, Express, TypeScript
-- **Database:** SQLite locale per desktop, Prisma ORM
-- **Testing:** Vitest, Supertest
+## Screenshots
 
-## Requisiti
+### Account workspace
 
-- Node.js 20+
-- npm 10+
-- Windows 10/11
+![ExpenseTracker login screen](client/public/screenshots/login.png)
 
-## Avvio
+The application opens with a dedicated account workspace. After signing in, users can move between the dashboard and every finance-management section from the sidebar.
 
-1. Copiare `.env.example` in `.env` e configurare i valori locali.
-2. Installare le dipendenze:
+## Features
+
+- Secure local account authentication with JWT sessions and bcrypt password hashing
+- Dashboard with balance, income, expenses, savings, trends, charts, recent transactions, upcoming payments, and budget progress
+- Create, edit, filter, and delete income and expense transactions
+- Create and manage income and expense categories
+- Set monthly budgets globally or for a specific category
+- Schedule recurring income and expenses with daily, weekly, monthly, or yearly frequencies
+- Analytics views with monthly trends and category breakdowns
+- Import and export transactions as CSV
+- Light and dark themes, responsive layout, reduced-motion support, and compact mode
+- Windows desktop packaging through Electron with a local SQLite database
+
+## Tech stack
+
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Recharts
+- **Backend:** Node.js, Express 5, TypeScript
+- **Desktop:** Electron
+- **Database:** SQLite with Prisma ORM
+- **Validation and security:** Zod, JWT, bcrypt, Helmet, CORS
+- **Testing:** Vitest and Supertest
+
+## Requirements
+
+- Windows 10 or Windows 11
+- Node.js 20 or newer
+- npm 10 or newer
+
+## Getting started
+
+1. Clone the repository and open the project directory.
+2. Install the root, client, and server dependencies:
 
    ```bash
    npm install
@@ -28,66 +55,73 @@ Vecchio progetto incompleto ripreso e attualmente in fase di consolidamento: Exp
    npm install --prefix server
    ```
 
-3. Avviare client e server:
+3. Copy `.env.example` to `.env` if you need to override local development settings.
+4. Start the frontend and backend together:
 
    ```bash
    npm run dev
    ```
 
-Il frontend è disponibile su `http://localhost:5173`; il backend risponde su
-`http://localhost:3000`.
+The frontend runs at `http://localhost:5173` and the API runs at `http://localhost:3000`.
 
-## Applicazione Windows
+## Build the Windows application
 
-Per creare la versione desktop:
+Create an unpacked Windows build:
 
 ```bash
 npm run build:desktop
 ```
 
-L’eseguibile avviabile viene generato in `release/win-unpacked/ExpenseTracker.exe`.
-Per creare un installer Windows:
+The executable is generated at:
+
+```text
+release/win-unpacked/ExpenseTracker.exe
+```
+
+Create an NSIS installer:
 
 ```bash
 npm run build:installer
 ```
 
-L’app desktop avvia automaticamente il servizio locale e apre la finestra solo
-dopo che l’API è pronta. Usa SQLite nel profilo utente Windows e non richiede
-PostgreSQL o altri servizi esterni.
+The desktop application starts the local API automatically and opens the user interface after the API is ready. No PostgreSQL server or other external service is required.
 
-## Comandi utili
+## Useful commands
 
 ```bash
+npm run dev
 npm run build
 npm test
 npm run dev --prefix client
 npm run dev --prefix server
 ```
 
-## Database
+## Data and privacy
 
-Ogni installazione desktop crea automaticamente un database SQLite vuoto e
-isolato nel profilo utente Windows (`%APPDATA%\expense-tracker\data`). Il
-database non è incluso nel repository, non viene caricato su GitHub e non è
-condiviso con altri utenti. Anche il segreto JWT viene generato localmente per
-ogni installazione.
+Each desktop installation uses an isolated SQLite database in the Windows user profile:
 
-Il modello è definito in `prisma/schema.prisma`; all’avvio il server crea le
-tabelle mancanti nel database locale. Per inizializzare manualmente un database
-vuoto in sviluppo, eseguire:
+```text
+%APPDATA%\expense-tracker\data
+```
+
+The database and JWT secret are created locally for each installation. Personal data is not included in the repository. Do not commit `.env`, database files, `release/`, or `node_modules/`.
+
+The Prisma schema is defined in `prisma/schema.prisma`. During startup, the server creates missing tables in the local database. To initialize a development database manually:
 
 ```bash
 npx --prefix server prisma db push --schema prisma/schema.prisma
 ```
 
-Le API disponibili includono autenticazione JWT, transazioni, categorie,
-budget e analytics overview. Il client include login/registrazione, dashboard,
-grafico per categoria e gestione di transazioni e categorie.
+## Project structure
 
-### Pubblicazione su GitHub
+```text
+client/     React frontend and UI assets
+server/     Express API and business logic
+electron/   Electron desktop entry point
+prisma/     Database schema
+release/    Generated Windows builds
+```
 
-È sicuro pubblicare il codice senza dati personali: non aggiungere mai file
-`.env`, `.db`, `release/` o cartelle `node_modules/` al commit. Il file
-`.env.example` contiene solo valori dimostrativi e non segreti. Ogni utente
-crea il proprio account e i propri dati localmente.
+## License
+
+This project is currently distributed without a separate license file. Add a license before publishing it for external reuse.
