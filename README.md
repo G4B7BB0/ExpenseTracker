@@ -1,127 +1,107 @@
 # ExpenseTracker
 
-ExpenseTracker is a Windows desktop application for managing personal finances in one place. It combines a focused dashboard with transaction management, budgets, recurring payments, categories, analytics, and CSV data exchange.
+ExpenseTracker is a simple Windows desktop app for keeping track of personal money.
 
-> **Status: Completed**
+Add your income and expenses, see where your money goes, set a monthly budget, and keep recurring payments in one place.
+
+> **Project status: finished**
 >
-> ExpenseTracker was completed through a vibe-coding workflow and is packaged as a local-first Electron application.
+> Built and completed by **G4B7BB0** using a vibe-coding workflow.
 
-![ExpenseTracker brand mark](client/src/assets/hero.png)
+![ExpenseTracker logo](client/src/assets/hero.png)
+
+## What it does
+
+- Shows your current balance, income, expenses, savings, and budget progress
+- Lets you add, edit, filter, and remove transactions
+- Organises transactions with custom categories
+- Supports monthly budgets
+- Keeps recurring payments visible
+- Includes charts for monthly and category spending
+- Imports and exports transactions as CSV files
+- Supports light mode and dark mode
+- Stores data locally on the Windows computer
 
 ## Screenshots
 
-### Account workspace
+### Login and account workspace
 
-![ExpenseTracker login screen](client/public/screenshots/login.png)
+![ExpenseTracker login](client/public/screenshots/login.png)
 
-The application opens with a dedicated account workspace. After signing in, users can move between the dashboard and every finance-management section from the sidebar.
+### Dashboard
 
-## Features
+![ExpenseTracker dashboard](client/public/screenshots/dashboard.png)
 
-- Secure local account authentication with JWT sessions and bcrypt password hashing
-- Dashboard with balance, income, expenses, savings, trends, charts, recent transactions, upcoming payments, and budget progress
-- Create, edit, filter, and delete income and expense transactions
-- Create and manage income and expense categories
-- Set monthly budgets globally or for a specific category
-- Schedule recurring income and expenses with daily, weekly, monthly, or yearly frequencies
-- Analytics views with monthly trends and category breakdowns
-- Import and export transactions as CSV
-- Light and dark themes, responsive layout, reduced-motion support, and compact mode
-- Windows desktop packaging through Electron with a local SQLite database
+### Transactions
 
-## Tech stack
+![ExpenseTracker transactions](client/public/screenshots/transactions.png)
 
-- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Recharts
-- **Backend:** Node.js, Express 5, TypeScript
-- **Desktop:** Electron
-- **Database:** SQLite with Prisma ORM
-- **Validation and security:** Zod, JWT, bcrypt, Helmet, CORS
-- **Testing:** Vitest and Supertest
+### Analytics
 
-## Requirements
+![ExpenseTracker analytics](client/public/screenshots/analytics.png)
 
-- Windows 10 or Windows 11
-- Node.js 20 or newer
-- npm 10 or newer
+## Technology used
 
-## Getting started
+- React and TypeScript for the interface
+- Node.js and Express for the local API
+- Electron for the Windows desktop app
+- SQLite and Prisma for local data
+- Recharts for the graphs
 
-1. Clone the repository and open the project directory.
-2. Install the root, client, and server dependencies:
+## Run it on your computer
 
-   ```bash
-   npm install
-   npm install --prefix client
-   npm install --prefix server
-   ```
-
-3. Copy `.env.example` to `.env` if you need to override local development settings.
-4. Start the frontend and backend together:
-
-   ```bash
-   npm run dev
-   ```
-
-The frontend runs at `http://localhost:5173` and the API runs at `http://localhost:3000`.
-
-## Build the Windows application
-
-Create an unpacked Windows build:
+You need Windows, Node.js 20 or newer, and npm.
 
 ```bash
-npm run build:desktop
+git clone https://github.com/G4B7BB0/ExpenseTracker.git
+cd ExpenseTracker
+npm install
+npm install --prefix client
+npm install --prefix server
+npm run dev
 ```
 
-The executable is generated at:
+Then open `http://localhost:5173`.
 
-```text
-release/win-unpacked/ExpenseTracker.exe
-```
-
-Create an NSIS installer:
+To create a Windows build:
 
 ```bash
 npm run build:installer
 ```
 
-The desktop application starts the local API automatically and opens the user interface after the API is ready. No PostgreSQL server or other external service is required.
+The installer is generated in the `release` folder.
 
-## Useful commands
+## Your data
 
-```bash
-npm run dev
-npm run build
-npm test
-npm run dev --prefix client
-npm run dev --prefix server
-```
+ExpenseTracker uses a local SQLite database. It does not need PostgreSQL, a cloud account, or another external service.
 
-## Data and privacy
-
-Each desktop installation uses an isolated SQLite database in the Windows user profile:
+The desktop database is stored here:
 
 ```text
 %APPDATA%\expense-tracker\data
 ```
 
-The database and JWT secret are created locally for each installation. Personal data is not included in the repository. Do not commit `.env`, database files, `release/`, or `node_modules/`.
+Do not commit `.env` files, database files, `node_modules`, or generated builds.
 
-The Prisma schema is defined in `prisma/schema.prisma`. During startup, the server creates missing tables in the local database. To initialize a development database manually:
+## Personal-use notice
 
-```bash
-npx --prefix server prisma db push --schema prisma/schema.prisma
-```
+This repository is shared so people can **clone it and use it personally**.
 
-## Project structure
+There is **no permission to republish, redistribute, sell, rebrand, or upload modified copies** of this project or its assets. Please keep the original author information and do not present the project as your own.
+
+See [`LICENSE.md`](LICENSE.md) for the full personal-use notice.
+
+## Project signature
 
 ```text
-client/     React frontend and UI assets
-server/     Express API and business logic
-electron/   Electron desktop entry point
-prisma/     Database schema
-release/    Generated Windows builds
+  _____ _  _   ____  ____  ____  ____  ____  ____
+ / ____| || | / __ \|  _ \|  _ \|  _ \|  _ \|  _ \
+| |  __| || || |  | | |_) | |_) | |_) | |_) | |_) |
+| | |_ |__   _| |  | |  _ <|  _ <|  _ <|  _ <|  _ <
+| |__| |  | | | |__| | |_) | |_) | |_) | |_) | |_) |
+ \_____|  |_|  \____/|____/|____/|____/|____/|____/
+
+                    - G4B7BB0 -
 ```
 
-## License
-
-This project is currently distributed without a separate license file. Add a license before publishing it for external reuse.
+The application code also keeps the original `G4B7BB0` identity in the project metadata and UI account demo used for the screenshots.
